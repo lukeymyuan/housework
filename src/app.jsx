@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import Index from './pages/index'
+import 'taro-ui/dist/style/index.scss'
 
 import './app.css'
 
@@ -11,17 +12,19 @@ import './app.css'
 
 class App extends Component {
 
-  componentDidMount () {}
+  componentDidMount() { }
 
-  componentDidShow () {}
+  componentDidShow() { }
 
-  componentDidHide () {}
+  componentDidHide() { }
 
-  componentDidCatchError () {}
+  componentDidCatchError() { }
 
   config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/doItAll/doItAll'
+
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -33,7 +36,7 @@ class App extends Component {
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
-  render () {
+  render() {
     return (
       <Index />
     )

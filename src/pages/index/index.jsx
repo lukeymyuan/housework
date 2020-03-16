@@ -1,28 +1,37 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
-import './index.css'
+import { View } from '@tarojs/components'
+import { AtButton } from 'taro-ui'
+import Tab from './../../components/tab/tab'
+
+const actions = ["做饭", "拖地", "擦桌子"];
 
 export default class Index extends Component {
 
-  componentWillMount () { }
-
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  config = {
-    navigationBarTitleText: '首页'
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      action: ""
+    }
   }
 
-  render () {
+  handleClick() {
+
+    const action = actions[Math.floor(Math.random() * actions.length)];
+    this.setState({ action: action })
+  }
+
+  render() {
+
     return (
-      <View className='index'>
-        <Text>Hello world!</Text>
+      <View >
+        <AtButton size='small' type='primary' onClick={this.handleClick}>分工</AtButton>
+        <div>
+          我做 {this.state.action}
+        </div>
+        <Tab />
       </View>
+
     )
   }
 }
