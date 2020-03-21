@@ -24,6 +24,11 @@ export default class Tab extends Component {
                     url: '/pages/doItAll/doItAll'
                 })
                 break;
+            case 2:
+                Taro.redirectTo({
+                    url: '/pages/aboutUs/aboutUs'
+                })
+                break;
             default:
                 break;
         }
@@ -32,10 +37,11 @@ export default class Tab extends Component {
     render() {
 
         return (
-            <AtTabBar
+            <AtTabBar fixed
                 tabList={[
-                    { title: '选一个', },
-                    { title: '全包' },
+                    { title: '咋分工', },
+                    { title: '谁全包' },
+                    { title: '来聊聊' },
                 ]}
                 onClick={this.handleClick.bind(this)}
                 current={this.state.current}

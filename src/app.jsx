@@ -23,8 +23,8 @@ class App extends Component {
   config = {
     pages: [
       'pages/index/index',
-      'pages/doItAll/doItAll'
-
+      'pages/doItAll/doItAll',
+      'pages/aboutUs/aboutUs'
     ],
     window: {
       backgroundTextStyle: 'light',
