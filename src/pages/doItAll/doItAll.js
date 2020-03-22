@@ -1,10 +1,9 @@
 import Taro, { Component, chooseInvoiceTitle } from '@tarojs/taro'
 import { View, Image, Text, Button } from '@tarojs/components'
 import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui"
-
+import { AtButton } from 'taro-ui'
 import Tab from './../../components/tab/tab'
 import singleHousework from './single-housework.jpg'
-import './../index/index.css'
 
 const actions = ["老婆", "老公"];
 
@@ -42,7 +41,7 @@ export default class Index extends Component {
                 </View>
                 <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
                 <View className='at-row at-row__justify--center'>
-                    <a class="btn" onClick={this.handleClick}>谁来</a>
+                    <AtButton type='primary' circle='true' onClick={this.handleClick} >谁来</AtButton>
                 </View>
                 <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
 
