@@ -1,10 +1,10 @@
 import Taro, { Component, chooseInvoiceTitle } from '@tarojs/taro'
 import { View, Image, Text, Button } from '@tarojs/components'
-import { AtModal, AtModalHeader, AtModalContent, AtModalAction, AtButton } from "taro-ui"
+import { AtModal, AtModalHeader, AtModalContent, AtModalAction, AtButton, AtTag, AtNoticebar } from "taro-ui"
 import Tab from './../../components/tab/tab'
 import singleHousework from './single-housework.jpg'
 
-const actions = ["老婆", "老公"];
+const actions = { tag1: "老公", tag2: "老婆", tag3: "孩子", tag4: "老爸", tag5: "老妈" };
 
 export default class Index extends Component {
 
@@ -14,13 +14,27 @@ export default class Index extends Component {
         this.handleModalClose = this.handleModalClose.bind(this);
         this.state = {
             isOpened: false,
-            action: ""
+            action: "",
+            tag1: true,
+            tag2: true,
+            tag3: false,
+            tag4: false,
+            tag5: false,
+            activeTags: []
         }
     }
 
+    handleTagClick(item) {
+        this.setState({ [item.name]: !item.active })
+    }
+
     handleClick() {
-        const action = actions[Math.floor(Math.random() * actions.length)];
-        this.setState({ action: action, isOpened: true })
+        const tags = Object.keys(actions);
+        const result = tags.filter(tag => this.state[tag] === true);
+        this.setState({ activeTags: result }, () => {
+            const action = actions[this.state.activeTags[Math.floor(Math.random() * this.state.activeTags.length)]];
+            this.setState({ action: action, isOpened: true });
+        })
     }
 
     handleModalClose() {
@@ -32,6 +46,7 @@ export default class Index extends Component {
     render() {
         return (
             <View >
+                <AtNoticebar>选择角色后来决定命运</AtNoticebar>
                 <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
                 <View className='at-row at-row__justify--center'>
                     <Image
@@ -49,7 +64,27 @@ export default class Index extends Component {
                     <AtModalAction> <Button onClick={this.handleModalClose}>确定</Button> </AtModalAction>
                 </AtModal>
 
-                <Tab />
+                <View className='at-row at-row__justify--center'>
+                    <View className='at-col at-col-3'><AtTag name='tag1' type='primary' active={this.state.tag1} onClick={this.handleTagClick}>
+                        {actions.tag1}
+                    </AtTag></View>
+                    <View className='at-col at-col-3'><AtTag name='tag2' type='primary' active={this.state.tag2} onClick={this.handleTagClick}>
+                        {actions.tag2}
+                    </AtTag></View>
+                    <View className='at-col at-col-3'><AtTag name='tag3' type='primary' active={this.state.tag3} onClick={this.handleTagClick}>
+                        {actions.tag3}
+                    </AtTag></View>
+                </View>
+                <View className='at-row at-row__justify--center'>
+                    <View className='at-col at-col-3'><AtTag name='tag4' type='primary' active={this.state.tag4} onClick={this.handleTagClick}>
+                        {actions.tag4}
+                    </AtTag></View>
+                    <View className='at-col at-col-3'><AtTag name='tag5' type='primary' active={this.state.tag5} onClick={this.handleTagClick}>
+                        {actions.tag5}
+                    </AtTag></View>
+                </View>
+
+                <Tab current={1} />
             </View >
         )
     }

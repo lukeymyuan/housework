@@ -51,7 +51,7 @@ export default class Index extends Component {
   render() {
     return (
       <View >
-        <AtNoticebar>点选家务后点击分工</AtNoticebar>
+        <AtNoticebar>选择家务后点击分工，深色的为默认已选</AtNoticebar>
         <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
         <View className='at-row at-row__justify--center'>
           <Image
@@ -100,8 +100,7 @@ export default class Index extends Component {
           </AtTag></View>
         </View>
 
-
-        <Tab />
+        <Tab current={0} />
       </View >
     )
   }

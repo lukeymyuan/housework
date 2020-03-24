@@ -17,10 +17,10 @@ export default class Index extends Component {
                 </View>
                 <View className='at-article'>
                     <View className='at-article__h1'>
-                        我们是有梦想，脑回路奇怪，爱折腾的couple
+                        我们是有梦想，脑回路奇怪，爱折腾，爱猫的couple
                     </View>
                 </View>
-                <Tab />
+                <Tab current={2} />
             </View>
         )
     }

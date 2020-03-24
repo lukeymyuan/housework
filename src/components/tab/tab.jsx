@@ -1,11 +1,11 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { Component, chooseInvoiceTitle } from '@tarojs/taro'
 import { AtTabBar } from 'taro-ui'
 
 export default class Tab extends Component {
     constructor() {
         super(...arguments)
         this.state = {
-            current: 0
+            current: this.props.current
         }
     }
 
