@@ -5,18 +5,6 @@ import coupleArgue from './couple-argue.jpg'
 
 export default class Index extends Component {
 
-
-    componentWillMount() { }
-
-    componentDidMount() { }
-
-    componentWillUnmount() { }
-
-    componentDidShow() { }
-
-    componentDidHide() { }
-
-
     render() {
 
         return (

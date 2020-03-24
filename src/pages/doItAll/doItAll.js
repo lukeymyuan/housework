@@ -1,7 +1,6 @@
 import Taro, { Component, chooseInvoiceTitle } from '@tarojs/taro'
 import { View, Image, Text, Button } from '@tarojs/components'
-import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui"
-import { AtButton } from 'taro-ui'
+import { AtModal, AtModalHeader, AtModalContent, AtModalAction, AtButton } from "taro-ui"
 import Tab from './../../components/tab/tab'
 import singleHousework from './single-housework.jpg'
 
@@ -9,8 +8,8 @@ const actions = ["老婆", "老公"];
 
 export default class Index extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super(...arguments);
         this.handleClick = this.handleClick.bind(this);
         this.handleModalClose = this.handleModalClose.bind(this);
         this.state = {
