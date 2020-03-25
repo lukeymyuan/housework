@@ -52,7 +52,7 @@ export default class Index extends Component {
     return (
       <View >
         <AtNoticebar>选择家务后点击分工，深色的为默认已选</AtNoticebar>
-        <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
+
         <View className='at-row at-row__justify--center'>
           <Image
             src={familyHouseworkJpg}
@@ -80,6 +80,7 @@ export default class Index extends Component {
             {actions.tag3}
           </AtTag></View>
         </View>
+        <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
         <View className='at-row at-row__justify--center'>
           <View className='at-col at-col-3'><AtTag name='tag4' type='primary' active={this.state.tag4} onClick={this.handleTagClick}>
             {actions.tag4}
@@ -91,6 +92,7 @@ export default class Index extends Component {
             {actions.tag6}
           </AtTag></View>
         </View>
+        <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
         <View className='at-row at-row__justify--center'>
           <View className='at-col at-col-3'><AtTag name='tag7' type='primary' active={this.state.tag7} onClick={this.handleTagClick}>
             {actions.tag7}

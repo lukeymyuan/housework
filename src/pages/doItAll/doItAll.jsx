@@ -1,7 +1,7 @@
 import Taro, { Component, chooseInvoiceTitle } from '@tarojs/taro'
 import { View, Image, Text, Button } from '@tarojs/components'
 import { AtModal, AtModalHeader, AtModalContent, AtModalAction, AtButton, AtTag, AtNoticebar } from "taro-ui"
-import Tab from './../../components/tab/tab'
+import Tab from '../../components/tab/tab'
 import singleHousework from './single-housework.jpg'
 
 const actions = { tag1: "老公", tag2: "老婆", tag3: "孩子", tag4: "老爸", tag5: "老妈" };
@@ -10,6 +10,7 @@ export default class Index extends Component {
 
     constructor() {
         super(...arguments);
+        this.handleTagClick = this.handleTagClick.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleModalClose = this.handleModalClose.bind(this);
         this.state = {
@@ -46,8 +47,7 @@ export default class Index extends Component {
     render() {
         return (
             <View >
-                <AtNoticebar>选择角色后来决定命运</AtNoticebar>
-                <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
+                <AtNoticebar>选择角色后来决定命运，深色的为默认已选</AtNoticebar>
                 <View className='at-row at-row__justify--center'>
                     <Image
                         src={singleHousework}
@@ -75,6 +75,7 @@ export default class Index extends Component {
                         {actions.tag3}
                     </AtTag></View>
                 </View>
+                <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
                 <View className='at-row at-row__justify--center'>
                     <View className='at-col at-col-3'><AtTag name='tag4' type='primary' active={this.state.tag4} onClick={this.handleTagClick}>
                         {actions.tag4}
