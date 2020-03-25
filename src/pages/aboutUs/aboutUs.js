@@ -8,6 +8,16 @@ export default class Index extends Component {
         navigationBarTitleText: '来聊聊'
     }
 
+    onShareAppMessage(res) {
+        if (res.from === 'button') {
+            console.log(res.target)
+        }
+        return {
+            title: '把家务全丢给老公！',
+            path: '/pages/index/index'
+        }
+    }
+
     render() {
         return (
             <View>

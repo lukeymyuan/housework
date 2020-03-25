@@ -11,6 +11,16 @@ export default class Index extends Component {
         navigationBarTitleText: '谁全包'
     }
 
+    onShareAppMessage(res) {
+        if (res.from === 'button') {
+            console.log(res.target)
+        }
+        return {
+            title: '把家务全丢给老公！',
+            path: '/pages/index/index'
+        }
+    }
+
     constructor() {
         super(...arguments);
         this.handleTagClick = this.handleTagClick.bind(this);

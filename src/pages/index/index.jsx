@@ -16,7 +16,7 @@ export default class Index extends Component {
       console.log(res.target)
     }
     return {
-      title: '自定义转发标题',
+      title: '把家务全丢给老公！',
       path: '/pages/index/index'
     }
   }
@@ -65,9 +65,6 @@ export default class Index extends Component {
     return (
       <View >
 
-        <AtButton full openType="share">
-          分享
-        </AtButton>
         <AtNoticebar close={true}>选择家务后点击分工，深色的为默认已选</AtNoticebar>
 
         <View className='at-row at-row__justify--center'>
