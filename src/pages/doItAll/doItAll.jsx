@@ -7,6 +7,9 @@ import singleHousework from './single-housework.jpg'
 const actions = { tag1: "老公", tag2: "老婆", tag3: "孩子", tag4: "老爸", tag5: "老妈" };
 
 export default class Index extends Component {
+    config = {
+        navigationBarTitleText: '谁全包'
+    }
 
     constructor() {
         super(...arguments);
@@ -47,7 +50,7 @@ export default class Index extends Component {
     render() {
         return (
             <View >
-                <AtNoticebar>选择角色后来决定命运，深色的为默认已选</AtNoticebar>
+                <AtNoticebar close={true}>选择角色后来决定命运，深色的为默认已选</AtNoticebar>
                 <View className='at-row at-row__justify--center'>
                     <Image
                         src={singleHousework}

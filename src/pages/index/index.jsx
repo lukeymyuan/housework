@@ -7,6 +7,19 @@ import familyHouseworkJpg from './family-housework.jpg'
 const actions = { tag1: "做饭", tag2: "洗碗", tag3: "拖地", tag4: "倒垃圾", tag5: "洗衣服", tag6: "买菜", tag7: "刷马桶", tag8: "铲屎" };
 
 export default class Index extends Component {
+  config = {
+    navigationBarTitleText: '咋分工'
+  }
+
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+      console.log(res.target)
+    }
+    return {
+      title: '自定义转发标题',
+      path: '/pages/index/index'
+    }
+  }
 
   constructor() {
     super(...arguments);
@@ -51,7 +64,11 @@ export default class Index extends Component {
   render() {
     return (
       <View >
-        <AtNoticebar>选择家务后点击分工，深色的为默认已选</AtNoticebar>
+
+        <AtButton full openType="share">
+          分享
+        </AtButton>
+        <AtNoticebar close={true}>选择家务后点击分工，深色的为默认已选</AtNoticebar>
 
         <View className='at-row at-row__justify--center'>
           <Image

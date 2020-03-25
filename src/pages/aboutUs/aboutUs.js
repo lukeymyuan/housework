@@ -4,9 +4,11 @@ import Tab from './../../components/tab/tab'
 import coupleArgue from './couple-argue.jpg'
 
 export default class Index extends Component {
+    config = {
+        navigationBarTitleText: '来聊聊'
+    }
 
     render() {
-
         return (
             <View>
                 <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>

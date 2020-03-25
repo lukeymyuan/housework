@@ -39,9 +39,9 @@ export default class Tab extends Component {
         return (
             <AtTabBar fixed
                 tabList={[
-                    { title: '咋分工', },
-                    { title: '谁全包' },
-                    { title: '来聊聊' },
+                    { title: '咋分工', iconType: 'list' },
+                    { title: '谁全包', iconType: 'heart-2' },
+                    { title: '来聊聊', iconType: 'message' },
                 ]}
                 onClick={this.handleClick.bind(this)}
                 current={this.state.current}
