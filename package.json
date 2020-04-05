@@ -41,9 +41,11 @@
     "@tarojs/taro-swan": "2.0.6",
     "@tarojs/taro-tt": "2.0.6",
     "@tarojs/taro-weapp": "2.0.6",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "nerv-devtools": "^1.5.5",
     "nervjs": "^1.5.5",
-    "taro-ui": "^2.3.1"
+    "taro-ui": "^2.3.2",
+    "wechat-taroturntable": "^1.0.2"
   },
   "devDependencies": {
     "@types/react": "^16.4.6",
