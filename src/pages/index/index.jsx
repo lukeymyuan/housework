@@ -7,16 +7,7 @@ import Luckyturntable from 'wechat-taroturntable'
 import familyHouseworkJpg from './family-housework.jpg'
 
 
-const actions = { tag1: "做饭", tag2: "洗碗", tag3: "拖地", tag4: "倒垃圾", tag5: "洗衣服", tag6: "买菜", tag7: "刷马桶", tag8: "铲屎" };
-
-const awardsList = [
-  { id: 1, award: '娱乐放松嗨', comment: '电影要去影院看，飙歌要去包间喊！', commentIcon: 'sound' },
-  { id: 2, award: '美味要大块', comment: '垂涎直下三千尺，享用美食在眼前。', commentIcon: 'heart' },
-  { id: 3, award: '独坐静发呆', comment: '放空一段自己自由自我的午后，静静品味岁月静好。', commentIcon: 'user' },
-  { id: 4, award: '心念下单买', comment: '终于为心心念念的消费找到一个充分必要的理由！', commentIcon: 'shopping-cart' },
-  { id: 5, award: '开溜百里外', comment: '背上包，说走就走。多久没有出游玩一趟了？', commentIcon: 'image' },
-  { id: 6, award: '红包约人派', comment: '朝某人振臂一呼，小小激励速速！且行且珍惜.' }
-];
+const actions = { tag1: "做饭", tag2: "洗碗", tag3: "拖地", tag4: "倒垃圾", tag5: "洗衣服", tag6: "买菜", tag7: "刷马桶", tag8: "铲猫屎", tag9: "遛狗" };
 
 export default class Index extends Component {
   config = {
@@ -28,7 +19,7 @@ export default class Index extends Component {
       console.log(res.target)
     }
     return {
-      title: '把家务全丢给老公！',
+      title: '试试这个小程序，妈妈再也不用担心家务分工！',
       path: '/pages/index/index'
     }
   }
@@ -49,7 +40,9 @@ export default class Index extends Component {
       tag6: false,
       tag7: false,
       tag8: false,
+      tag9: false,
       activeTags: [],
+      luckyList: [],
       isCurtainOpened: false
     }
   }
@@ -62,8 +55,31 @@ export default class Index extends Component {
     const tags = Object.keys(actions);
     const result = tags.filter(tag => this.state[tag] === true);
     this.setState({ activeTags: result }, () => {
+      let luckyList = result.map((tag, index) => {
+        switch (tag) {
+          case "tag1":
+            return { id: index + 1, award: actions[tag], comment: '做饭，中华小当家是俺也！' }
+          case "tag2":
+            return { id: index + 1, award: actions[tag], comment: '洗碗' }
+          case "tag3":
+            return { id: index + 1, award: actions[tag], comment: '我来拖地！' }
+          case "tag4":
+            return { id: index + 1, award: actions[tag], comment: '我下楼倒垃圾！' }
+          case "tag5":
+            return { id: index + 1, award: actions[tag], comment: '洗衣服' }
+          case "tag6":
+            return { id: index + 1, award: actions[tag], comment: '我出门买菜！' }
+          case "tag7":
+            return { id: index + 1, award: actions[tag], comment: '刷马桶' }
+          case "tag8":
+            return { id: index + 1, award: actions[tag], comment: '我去铲猫臭臭' }
+          case "tag9":
+            return { id: index + 1, award: actions[tag], comment: '我出门遛狗！' }
+        }
+      })
+      console.log(luckyList)
       const action = actions[this.state.activeTags[Math.floor(Math.random() * this.state.activeTags.length)]];
-      this.setState({ action: action, isCurtainOpened: true });
+      this.setState({ action: action, isCurtainOpened: true, luckyList: luckyList });
     })
 
   }
@@ -84,16 +100,12 @@ export default class Index extends Component {
     return (
       <View >
 
-        <AtNoticebar close={true}>选择家务后点击分工，深色的为默认已选</AtNoticebar>
+        <AtNoticebar icon='volume-plus' close={true}>选择家务后点击分工，深色的为默认已选</AtNoticebar>
 
         <View className='at-row at-row__justify--center'>
           <Image
             src={familyHouseworkJpg}
           />
-        </View>
-        <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
-        <View className='at-row at-row__justify--center'>
-          <AtButton type='primary' circle='true' onClick={this.handleClick} >分工</AtButton>
         </View>
         <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
 
@@ -106,7 +118,7 @@ export default class Index extends Component {
           isOpened={this.state.isCurtainOpened}
           onClose={this.onCurtainClose.bind(this)}
         >
-          <Luckyturntable awards={awardsList} buttonTitle='小鼓励' />
+          <Luckyturntable awards={awardsList} buttonTitle='分工' />
         </AtCurtain>
 
         <View className='at-row at-row__justify--center'>
@@ -140,8 +152,17 @@ export default class Index extends Component {
           <View className='at-col at-col-3'><AtTag name='tag8' type='primary' active={this.state.tag8} onClick={this.handleTagClick}>
             {actions.tag8}
           </AtTag></View>
+          <View className='at-col at-col-3'><AtTag name='tag9' type='primary' active={this.state.tag9} onClick={this.handleTagClick}>
+            {actions.tag9}
+          </AtTag></View>
         </View>
+        <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
 
+        <View className='at-row at-row__justify--center'>
+          <View className='at-col at-col-5'>
+            <AtButton type='primary' circle='true' onClick={this.handleClick} >选完后点我分工</AtButton>
+          </View>
+        </View>
         <Tab current={0} />
       </View >
     )
