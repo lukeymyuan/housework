@@ -44,8 +44,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "nerv-devtools": "^1.5.5",
     "nervjs": "^1.5.5",
-    "taro-ui": "^2.3.2",
-    "wechat-taroturntable": "^1.0.2"
+    "taro-ui": "^2.3.2"
   },
   "devDependencies": {
     "@types/react": "^16.4.6",

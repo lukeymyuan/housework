@@ -2,7 +2,7 @@ import Taro, { Component, chooseInvoiceTitle } from '@tarojs/taro'
 import { View, Image, Text, Button } from '@tarojs/components'
 import { AtModal, AtModalHeader, AtModalContent, AtModalAction, AtButton, AtTag, AtNoticebar, AtCurtain } from "taro-ui"
 import Tab from './../../components/tab/tab'
-import Luckyturntable from 'wechat-taroturntable'
+import TextModal from './../../components/textModal/textModal'
 
 import familyHouseworkJpg from './family-housework.jpg'
 
@@ -27,10 +27,12 @@ export default class Index extends Component {
   constructor() {
     super(...arguments);
     this.handleModalClose = this.handleModalClose.bind(this);
+    this.handleModalTwoClose = this.handleModalTwoClose.bind(this);
     this.handleTagClick = this.handleTagClick.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.state = {
-      isOpened: false,
+      isModalOpened: false,
+      isModalTwoOpened: false,
       action: "",
       tag1: true,
       tag2: true,
@@ -42,8 +44,6 @@ export default class Index extends Component {
       tag8: false,
       tag9: false,
       activeTags: [],
-      luckyList: [],
-      isCurtainOpened: false
     }
   }
 
@@ -55,44 +55,21 @@ export default class Index extends Component {
     const tags = Object.keys(actions);
     const result = tags.filter(tag => this.state[tag] === true);
     this.setState({ activeTags: result }, () => {
-      let luckyList = result.map((tag, index) => {
-        switch (tag) {
-          case "tag1":
-            return { id: index + 1, award: actions[tag], comment: '做饭，中华小当家是俺也！' }
-          case "tag2":
-            return { id: index + 1, award: actions[tag], comment: '洗碗' }
-          case "tag3":
-            return { id: index + 1, award: actions[tag], comment: '我来拖地！' }
-          case "tag4":
-            return { id: index + 1, award: actions[tag], comment: '我下楼倒垃圾！' }
-          case "tag5":
-            return { id: index + 1, award: actions[tag], comment: '洗衣服' }
-          case "tag6":
-            return { id: index + 1, award: actions[tag], comment: '我出门买菜！' }
-          case "tag7":
-            return { id: index + 1, award: actions[tag], comment: '刷马桶' }
-          case "tag8":
-            return { id: index + 1, award: actions[tag], comment: '我去铲猫臭臭' }
-          case "tag9":
-            return { id: index + 1, award: actions[tag], comment: '我出门遛狗！' }
-        }
-      })
-      console.log(luckyList)
       const action = actions[this.state.activeTags[Math.floor(Math.random() * this.state.activeTags.length)]];
-      this.setState({ action: action, isCurtainOpened: true, luckyList: luckyList });
+      this.setState({ action: action, isModalOpened: true });
     })
 
   }
 
   handleModalClose() {
     this.setState({
-      isOpened: false
+      isModalOpened: false, isModalTwoOpened: true
     })
   }
 
-  onCurtainClose() {
+  handleModalTwoClose() {
     this.setState({
-      isCurtainOpened: false
+      isModalTwoOpened: false
     })
   }
 
@@ -109,17 +86,16 @@ export default class Index extends Component {
         </View>
         <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
 
-        <AtModal isOpened={this.state.isOpened} >
-          <AtModalHeader>我来{this.state.action}</AtModalHeader>
-          <AtModalAction> <Button onClick={this.handleModalClose}>确定</Button> </AtModalAction>
+        <AtModal isOpened={this.state.isModalOpened} >
+          <TextModal action={this.state.action} />
+          <AtModalAction> <Button onClick={this.handleModalClose}>好的我这就去做</Button> </AtModalAction>
         </AtModal>
 
-        <AtCurtain
-          isOpened={this.state.isCurtainOpened}
-          onClose={this.onCurtainClose.bind(this)}
-        >
-          <Luckyturntable awards={awardsList} buttonTitle='分工' />
-        </AtCurtain>
+        <AtModal isOpened={this.state.isModalTwoOpened} >
+          <AtModalHeader>觉得好用或想要吐槽？转发领取10枚程序金币</AtModalHeader>
+          <AtModalAction> <Button >转发领取金币</Button><Button onClick={this.handleModalTwoClose}>残忍取消</Button> </AtModalAction>
+        </AtModal>
+
 
         <View className='at-row at-row__justify--center'>
           <View className='at-col at-col-3'><AtTag name='tag1' type='primary' active={this.state.tag1} onClick={this.handleTagClick}>
