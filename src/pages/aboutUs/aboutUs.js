@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image, Text, Button } from '@tarojs/components'
-import { AtAccordion, AtButton } from "taro-ui"
+import { AtAccordion, AtButton, AtAvatar } from "taro-ui"
 import Tab from './../../components/tab/tab'
 import coupleArgue from './couple-argue.jpg'
 
@@ -39,9 +39,8 @@ export default class Index extends Component {
         return (
             <View>
                 <View className='at-row at-row__justify--center'>
-                    <Image
-                        src={coupleArgue}
-                    />
+                <AtAvatar circle openData={{ type:"userAvatarUrl"}}></AtAvatar>
+                    <OpenData type='userNickName'/>
                 </View>
                 <View className='at-article'>
 
