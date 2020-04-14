@@ -92,8 +92,8 @@ export default class Index extends Component {
         </AtModal>
 
         <AtModal isOpened={this.state.isModalTwoOpened} >
-          <AtModalHeader>觉得好用或想要吐槽？转发领取10枚程序金币</AtModalHeader>
-          <AtModalAction> <Button >转发领取金币</Button><Button onClick={this.handleModalTwoClose}>残忍取消</Button> </AtModalAction>
+          <AtModalHeader>觉得好用或想要吐槽？</AtModalHeader>
+          <AtModalAction> <Button openType="share">领金币</Button><Button onClick={this.handleModalTwoClose}>残忍取消</Button> </AtModalAction>
         </AtModal>
 
 
