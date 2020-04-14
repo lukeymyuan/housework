@@ -63,7 +63,7 @@ export default class Index extends Component {
                         onClick={this.handleAccordionClick.bind(this, 'accordionOneOpened')}
                         icon={{ value: 'help', color: 'red' }}
                         title='关于软件'
-                        note='当前版本 1.0.1'
+                        note='当前版本 1.0.2'
                     >
                         <View className='at-article__h3'>
                             作为家庭一员的你是否经常分担琐碎的家务劳动呢？有了这个小程序，妈妈再也不用担心我们如何家务分工了
