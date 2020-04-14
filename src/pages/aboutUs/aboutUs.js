@@ -26,6 +26,7 @@ export default class Index extends Component {
         this.state = {
             accordionOneOpened: false,
             accordionTwoOpened: false,
+            accordionThreeOpened: true
         }
     }
 
@@ -38,10 +39,23 @@ export default class Index extends Component {
     render() {
         return (
             <View>
-                <View className='at-row at-row__justify--center'>
-                <AtAvatar circle openData={{ type:"userAvatarUrl"}}></AtAvatar>
-                    <OpenData type='userNickName'/>
-                </View>
+                <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
+                <AtAccordion
+                    open={this.state.accordionThreeOpened}
+                    onClick={this.handleAccordionClick.bind(this, 'accordionThreeOpened')}
+                    icon={{ value: 'money', color: 'yellow' }}
+                    title='我的'
+                    note='金币剩余: 10'
+                >
+                    <View className='at-row at-row__justify--center'>
+                        <View className='at-col at-col-3'>
+                            {process.env.TARO_ENV === 'h5' ? <AtAvatar circle text='凹'></AtAvatar> : <AtAvatar circle openData={{ type: "userAvatarUrl" }}></AtAvatar>}
+                        </View>
+                        <View className='at-col at-col-3'>
+                            {process.env.TARO_ENV === 'h5' ? "Luke" : <OpenData type='userNickName' />}
+                        </View>
+                    </View>
+                </AtAccordion>
                 <View className='at-article'>
 
                     <AtAccordion
@@ -49,7 +63,6 @@ export default class Index extends Component {
                         onClick={this.handleAccordionClick.bind(this, 'accordionOneOpened')}
                         icon={{ value: 'help', color: 'red' }}
                         title='关于软件'
-                        note='当前版本 1.0.1'
                     >
                         <View className='at-article__h3'>
                             作为家庭一员的你是否经常分担琐碎的家务劳动呢？有了这个小程序，妈妈再也不用担心我们如何家务分工了
@@ -67,7 +80,7 @@ export default class Index extends Component {
                     </View>
                     </AtAccordion>
                     <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
-                    <AtButton openType="share" type='secondary'>分享给好友</AtButton>
+                    <AtButton openType="share" type='secondary'>分享给好友领取金币</AtButton>
                 </View>
                 <Tab current={2} />
             </View>

@@ -4,7 +4,7 @@ import { AtModal, AtModalHeader, AtModalContent, AtModalAction, AtButton, AtTag,
 import Tab from '../../components/tab/tab'
 import singleHousework from './single-housework.jpg'
 
-const actions = { tag1: "老公", tag2: "老婆", tag3: "孩子", tag4: "老爸", tag5: "老妈" };
+const actions = { tag1: "老公", tag2: "老婆", tag3: "孩子", tag4: "老爸", tag5: "老妈", tag6: "狗狗" };
 
 export default class Index extends Component {
     config = {
@@ -34,6 +34,7 @@ export default class Index extends Component {
             tag3: false,
             tag4: false,
             tag5: false,
+            tag6: false,
             activeTags: []
         }
     }
@@ -60,15 +61,11 @@ export default class Index extends Component {
     render() {
         return (
             <View >
-                <AtNoticebar close={true}>选择角色后来决定命运，深色的为默认已选</AtNoticebar>
+                <AtNoticebar icon='volume-plus' close={true}>选择角色后来决定命运，深色的为默认已选</AtNoticebar>
                 <View className='at-row at-row__justify--center'>
                     <Image
                         src={singleHousework}
                     />
-                </View>
-                <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
-                <View className='at-row at-row__justify--center'>
-                    <AtButton type='primary' circle='true' onClick={this.handleClick} >谁来</AtButton>
                 </View>
                 <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
 
@@ -96,6 +93,16 @@ export default class Index extends Component {
                     <View className='at-col at-col-3'><AtTag name='tag5' type='primary' active={this.state.tag5} onClick={this.handleTagClick}>
                         {actions.tag5}
                     </AtTag></View>
+                    <View className='at-col at-col-3'><AtTag name='tag6' type='primary' active={this.state.tag6} onClick={this.handleTagClick}>
+                        {actions.tag6}
+                    </AtTag></View>
+                </View>
+
+                <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
+                <View className='at-row at-row__justify--center'>
+                    <View className='at-col at-col-5'>
+                        <AtButton type='primary' circle='true' onClick={this.handleClick} >选完后点我决定命运</AtButton>
+                    </View>
                 </View>
 
                 <Tab current={1} />
