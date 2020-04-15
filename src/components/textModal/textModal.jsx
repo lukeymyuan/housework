@@ -17,7 +17,7 @@ export default class textModal extends Component {
                 function () {
                     this.setState({ action: action });
                 }.bind(this),
-                2000
+                1500
             );
         }
 

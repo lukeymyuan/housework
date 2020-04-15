@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Image, Text, Button } from '@tarojs/components'
 import { AtAccordion, AtButton, AtAvatar } from "taro-ui"
 import Tab from './../../components/tab/tab'
-import coupleArgue from './couple-argue.jpg'
+import styles from './aboutUs.css'
 
 const dayDifference = Math.ceil(Math.abs(new Date('5/2/2019') - new Date()) / (1000 * 60 * 60 * 24))
 
@@ -43,7 +43,7 @@ export default class Index extends Component {
                 <AtAccordion
                     open={this.state.accordionThreeOpened}
                     onClick={this.handleAccordionClick.bind(this, 'accordionThreeOpened')}
-                    icon={{ value: 'money', color: 'yellow' }}
+                    icon={{ value: 'money', color: 'gold' }}
                     title='我的'
                     note='金币剩余: 10'
                 >
@@ -51,7 +51,7 @@ export default class Index extends Component {
                         <View className='at-col at-col-3'>
                             {process.env.TARO_ENV === 'h5' ? <AtAvatar circle text='凹'></AtAvatar> : <AtAvatar circle openData={{ type: "userAvatarUrl" }}></AtAvatar>}
                         </View>
-                        <View className='at-col at-col-3'>
+                        <View className='at-col at-col-3' className={styles.username}>
                             {process.env.TARO_ENV === 'h5' ? "Luke" : <OpenData type='userNickName' />}
                         </View>
                     </View>
@@ -63,7 +63,7 @@ export default class Index extends Component {
                         onClick={this.handleAccordionClick.bind(this, 'accordionOneOpened')}
                         icon={{ value: 'help', color: 'red' }}
                         title='关于软件'
-                        note='当前版本 1.0.2'
+                        note='当前版本 1.0.3'
                     >
                         <View className='at-article__h3'>
                             作为家庭一员的你是否经常分担琐碎的家务劳动呢？有了这个小程序，妈妈再也不用担心我们如何家务分工了

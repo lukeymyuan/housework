@@ -77,7 +77,7 @@ export default class Index extends Component {
     return (
       <View >
 
-        <AtNoticebar icon='volume-plus' close={true}>选择家务后点击分工，深色的为默认已选</AtNoticebar>
+        <AtNoticebar icon='volume-plus' close={true}>选择家务后点击分工，深色的为默认已选，每次点击会消耗一金币</AtNoticebar>
 
         <View className='at-row at-row__justify--center'>
           <Image
@@ -92,8 +92,13 @@ export default class Index extends Component {
         </AtModal>
 
         <AtModal isOpened={this.state.isModalTwoOpened} >
-          <AtModalHeader>觉得好用或想要吐槽？</AtModalHeader>
-          <AtModalAction> <Button openType="share">领金币</Button><Button onClick={this.handleModalTwoClose}>残忍取消</Button> </AtModalAction>
+          <AtModalHeader>快去 {this.state.action} 吧！</AtModalHeader>
+          <AtModalContent>
+            <View className='at-article__h3'>
+              觉得好用或想要吐槽？转发给好友领取金币吧！
+  </View>
+          </AtModalContent>
+          <AtModalAction> <Button onClick={this.handleModalTwoClose}>残忍取消</Button><Button openType="share">领金币</Button> </AtModalAction>
         </AtModal>
 
 
@@ -132,6 +137,8 @@ export default class Index extends Component {
             {actions.tag9}
           </AtTag></View>
         </View>
+
+        <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
         <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
 
         <View className='at-row at-row__justify--center'>

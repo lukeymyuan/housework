@@ -4,7 +4,7 @@ import { AtModal, AtModalHeader, AtModalContent, AtModalAction, AtButton, AtTag,
 import Tab from '../../components/tab/tab'
 import singleHousework from './single-housework.jpg'
 
-const actions = { tag1: "老公", tag2: "老婆", tag3: "孩子", tag4: "老爸", tag5: "老妈", tag6: "狗狗" };
+const actions = { tag1: "老公", tag2: "老婆", tag3: "儿子", tag4: "女儿", tag5: "老妈", tag6: "老爸" };
 
 export default class Index extends Component {
     config = {
@@ -61,7 +61,7 @@ export default class Index extends Component {
     render() {
         return (
             <View >
-                <AtNoticebar icon='volume-plus' close={true}>选择角色后来决定命运，深色的为默认已选</AtNoticebar>
+                <AtNoticebar icon='volume-plus' close={true}>选择角色后来决定命运，深色的为默认已选,每次点击会消耗一金币</AtNoticebar>
                 <View className='at-row at-row__justify--center'>
                     <Image
                         src={singleHousework}
@@ -98,6 +98,7 @@ export default class Index extends Component {
                     </AtTag></View>
                 </View>
 
+                <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
                 <Text>{process.env.TARO_ENV === 'h5' ? <br /> : '\n'}</Text>
                 <View className='at-row at-row__justify--center'>
                     <View className='at-col at-col-5'>
